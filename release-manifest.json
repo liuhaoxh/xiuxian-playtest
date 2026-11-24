@@ -1,11 +1,21 @@
 {
   "schemaVersion": 1,
-  "manifestSha256": "0153eb1e91a0b193a82ef0fdaf07775575da6ad89284de9e40ecef05911815d8",
+  "manifestSha256": "5ec6412f84e6e779174b7a1fe9cb237a8d28894947e0b5d4cea2f9847f8c5a2c",
   "files": [
     {
       "path": ".nojekyll",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Build/085227e49e56284d96b7e1bb196a0f6c.data.unityweb",
+      "bytes": 45479971,
+      "sha256": "0b6612438056899862dd4161766aeaa120beefd99b9f7d0f1bd7f3589ef49fe9"
+    },
+    {
+      "path": "Build/13bd48e4d80a3cc64592c130cdbf6f9e.framework.js.unityweb",
+      "bytes": 92104,
+      "sha256": "13bd48e4d80a3cc64592c130cdbf6f9ec86ce14b8af3b11c313365e0e4d9b79f"
     },
     {
       "path": "Build/14d08bac977d456501f96e914c771b11.wasm.unityweb",
@@ -18,24 +28,14 @@
       "sha256": "c3aa2936ded63e6f96cf23b553c8b8143f2b90f57cef4557687b07756edfa7ba"
     },
     {
-      "path": "Build/5dcc3ae91fbf45537869dd39b31748be.framework.js.unityweb",
-      "bytes": 89382,
-      "sha256": "fbf0c5fd0c3064ef5187514e3ae5e484e2e25f6975e961a47195f9c7d465a2c4"
-    },
-    {
-      "path": "Build/ea43aa3ab96727cb1db463300ed8bca5.data.unityweb",
-      "bytes": 45481526,
-      "sha256": "a38f1f3e43119dbc2e463a18e7279dfa60e6e7b6a36d883226d8dac455062c52"
-    },
-    {
       "path": "build-info.json",
-      "bytes": 191,
-      "sha256": "7a4f439227403c486f6d81d80ad2efbdd33dbd4e7cdd7f2fb3b099b5189b3565"
+      "bytes": 194,
+      "sha256": "cc5fd8512fb8df81f508b0cdd8551bb988c3adc075858c031dcf3f408662f071"
     },
     {
       "path": "index.html",
-      "bytes": 8211,
-      "sha256": "b2de1b87ca2b70064ca47e3e3f9ee35a54bd275e0b3339c2f8574b3611762e57"
+      "bytes": 8214,
+      "sha256": "c9db7ee48a36f681f447f54b111e76dc31d72ff501c39ea7501f43ce025364ef"
     },
     {
       "path": "TemplateData/favicon.ico",
@@ -99,8 +99,8 @@
     },
     {
       "path": "TemplateData/xiuxian-audio-unlock.js",
-      "bytes": 2654,
-      "sha256": "716c655f6aadaeb67c4af6644738ef7e71a0456ebf857b78b9096f99c1b9d186"
+      "bytes": 3710,
+      "sha256": "a84ec18de60121a023795dffce7768c795e2dd41f39239c1123cffa225629e50"
     },
     {
       "path": "TemplateData/xiuxian-mobile.js",

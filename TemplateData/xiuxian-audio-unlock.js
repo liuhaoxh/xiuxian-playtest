@@ -4,6 +4,19 @@
   const contexts = new Set();
   const wrapped = new Map();
   let instance = null;
+  // CompressedInMemory is the default silent-mode path. Offer the explicit
+  // media playback session as a second layer on supporting Apple devices.
+  const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent || "") ||
+    (/Mac/i.test(navigator.platform || "") && navigator.maxTouchPoints > 1);
+  let preferMediaSession = false;
+  function applyMediaSession() {
+    if (!ios || !preferMediaSession || !navigator.audioSession ||
+        document.visibilityState === "hidden") return false;
+    try {
+      if (navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback";
+      return navigator.audioSession.type === "playback";
+    } catch (error) { console.warn("[WebAudio] session:",error?.name||"unsupported"); return false; }
+  }
   const toolbar = document.getElementById("xiuxian-input-toolbar");
   const button = document.createElement("button");
   button.type = "button";
@@ -47,15 +60,17 @@
   for (const event of ["pointerup","touchend","click","keydown"]) {
     document.addEventListener(event, e => { if (e.isTrusted) unlock(); }, {capture:true,passive:true});
   }
-  document.addEventListener("visibilitychange", update);
-  window.addEventListener("pageshow", update);
+  document.addEventListener("visibilitychange", () => { applyMediaSession(); update(); });
+  window.addEventListener("pageshow", () => { applyMediaSession(); update(); });
   button.addEventListener("click", async e => {
     if (!e.isTrusted) return;
+    preferMediaSession = true;
+    applyMediaSession();
     await unlock();
     if (instance && [...contexts].some(c => c.state === "running")) {
       try { instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
       catch (e) { console.warn("[WebAudio] test unavailable",e); }
     }
   });
-  window.XiuxianWebAudio = { bind(value){instance=value;update();}, state(){return [...contexts].map(c=>c.state);} };
+  window.XiuxianWebAudio = { bind(value){instance=value;update();}, state(){return [...contexts].map(c=>c.state);}, session(){return {ios,supported:!!navigator.audioSession,type:navigator.audioSession?.type||null,state:navigator.audioSession?.state||null,requested:preferMediaSession};} };
 })();
