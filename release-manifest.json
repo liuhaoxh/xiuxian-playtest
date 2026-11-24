@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "holding",
+  "manifestSha256": "a01b66dd3e228fd742ce8ecbd7c7b0842de181a7e611256d9963290e6925c20d",
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build-info.json",
+      "bytes": 123,
+      "sha256": "8fd6c6e9e216a87939f5dcfccfb2cc35e9e83b583136a76137bc079cb1a62bb1"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1300,
+      "sha256": "40c8a7ccec834fa48da31f96cb77faa1a8d66148d640de4beb14982638e23a3a"
+    }
+  ]
+}
