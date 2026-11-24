@@ -25,6 +25,18 @@
   button.title = "点击解锁浏览器音频并播放游戏音效";
   button.style.cssText = "font:inherit;color:#dce9e0;background:#263536;border:1px solid #60756e;border-radius:4px;padding:4px 9px;touch-action:manipulation;";
   toolbar?.appendChild(button);
+  // Optional per-cue diagnostics use the actual game's RunAudioSink, not synthetic tones.
+  const qa = new URLSearchParams(location.search).get("audioqa")==="1";
+  let cuePicker=null;
+  if(qa && toolbar && window.XiuxianIOSMedia){
+    cuePicker=document.createElement("select");
+    cuePicker.setAttribute("aria-label","Audio cue test");
+    cuePicker.title="Standalone audio transport test (actual game assets)";
+    const names=["weapon / 飞剑","gongfa / 功法发射","impact / 命中","hurt / 受伤","pickup / 拾取","layer / 境界","offer_open / 机缘打开","offer_pick / 机缘确认","campfire / 营火","boss_warning / 首领","victory / 胜利","defeat / 失败"];
+    names.forEach((name,id)=>{const o=document.createElement("option");o.value=String(id);o.textContent=name;cuePicker.appendChild(o);});
+    cuePicker.value="1";
+    toolbar.appendChild(cuePicker);
+  }
   function update() {
     const running = [...contexts].some(c => c.state === "running");
     button.textContent = running ? "试音" : "开启声音";
@@ -58,7 +70,15 @@
     return Promise.all(pending).then(update);
   }
   for (const event of ["pointerup","touchend","click","keydown"]) {
-    document.addEventListener(event, e => { if (e.isTrusted) unlock(); }, {capture:true,passive:true});
+    document.addEventListener(event, e => {
+      if (!e.isTrusted) return;
+      if (ios && (e.target === document.getElementById("unity-canvas") || e.target === button)) {
+        preferMediaSession = true;
+        applyMediaSession();
+        window.XiuxianIOSMedia?.unlock();
+      }
+      unlock();
+    }, {capture:true,passive:true});
   }
   document.addEventListener("visibilitychange", () => { applyMediaSession(); update(); });
   window.addEventListener("pageshow", () => { applyMediaSession(); update(); });
@@ -66,9 +86,11 @@
     if (!e.isTrusted) return;
     preferMediaSession = true;
     applyMediaSession();
+    window.XiuxianIOSMedia?.unlock();
     await unlock();
+    if(window.XiuxianIOSMedia) await window.XiuxianIOSMedia.ready();
     if (instance && [...contexts].some(c => c.state === "running")) {
-      try { instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
+      try { if(cuePicker) { if(!window.XiuxianIOSMedia.testCue(Number(cuePicker.value))) console.warn("[WebAudio] cue inventory changed; standalone check unavailable"); } else instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
       catch (e) { console.warn("[WebAudio] test unavailable",e); }
     }
   });

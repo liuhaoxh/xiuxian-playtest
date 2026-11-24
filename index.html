@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · input-focus-20261124M2</span></header>
+      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · ios-audio-pool-20261124N3</span></header>
       <div id="unity-fullscreen-container">
         <div id="xx-load-error" role="alert"><p id="xx-error-text"></p><button type="button" onclick="location.reload()">重新加载</button></div>
         <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
@@ -36,7 +36,8 @@
     <script src="TemplateData/xiuxian-mobile.js"></script>
     <script src="TemplateData/xiuxian-pointer-lock.js"></script>
     <script src="TemplateData/xiuxian-viewport-fix.js"></script>
-    <script src="TemplateData/xiuxian-audio-unlock.js"></script>
+    <script src="TemplateData/xiuxian-ios-media-pool.js"></script>
+    <script src="TemplateData/xiuxian-audio-unlock-v2.js"></script>
     <script>
       let canvas = document.querySelector("#unity-canvas");
       let fullscreenContainer = document.querySelector("#unity-fullscreen-container");
@@ -71,7 +72,7 @@
       var config = {
         arguments: [],
         dataUrl: buildUrl + "/267d21efcb5c60385b5a3fef05c6abad.data.unityweb",
-        frameworkUrl: buildUrl + "/d32555b092edf8daad233a908a027d6f.framework.js.unityweb",
+        frameworkUrl: buildUrl + "/b9d1c144fa8961efa6b1ecb3bb81a614.framework.js.unityweb",
         codeUrl: buildUrl + "/7e8ea5b0b4eda3cc99dde27f3528176c.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
 

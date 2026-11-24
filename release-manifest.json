@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "manifestSha256": "3b0e0bbc0f2f4bd4730080413eb9e944635142afecf6f98573e3b47775864cd8",
+  "manifestSha256": "615965141acc2390a3bb5e0c31f31d39fae8672be8ae00090fa79aa8e4c6971d",
   "files": [
     {
       "path": ".nojekyll",
@@ -23,19 +23,19 @@
       "sha256": "80c4a3a814cd100f76290e565d1565cf8aa0987646fdaf47b8afb472440a6852"
     },
     {
-      "path": "Build/d32555b092edf8daad233a908a027d6f.framework.js.unityweb",
-      "bytes": 92213,
-      "sha256": "d32555b092edf8daad233a908a027d6fe063774604ae900971256c4c4c4d87dc"
+      "path": "Build/b9d1c144fa8961efa6b1ecb3bb81a614.framework.js.unityweb",
+      "bytes": 92306,
+      "sha256": "b9d1c144fa8961efa6b1ecb3bb81a61415ef7f93f5c245204ab5d985e5f1705f"
     },
     {
       "path": "build-info.json",
-      "bytes": 190,
-      "sha256": "d983fb9dce70f84b20df00a61f6eff191d19a2a38c9cab2986a4ecac1de10f0f"
+      "bytes": 193,
+      "sha256": "e11b4c479eb8b28acdd8649838693452fa3ece94e43fa806ae501e5e1490b658"
     },
     {
       "path": "index.html",
-      "bytes": 8210,
-      "sha256": "529e369aba24a8a74016b35effd3493cbc4e046ad92f1d0123a08cbe2c5e27f4"
+      "bytes": 8283,
+      "sha256": "6dcc9bee112957730e1c8027bf64e7a6558e5f1b8b4a5c1ff50234073e43b8c4"
     },
     {
       "path": "TemplateData/favicon.ico",
@@ -98,9 +98,14 @@
       "sha256": "c56f5494640cedda273aad38d58e6ab9da625d5b3f4d875c0ff92c6192a569c2"
     },
     {
-      "path": "TemplateData/xiuxian-audio-unlock.js",
-      "bytes": 3710,
-      "sha256": "a84ec18de60121a023795dffce7768c795e2dd41f39239c1123cffa225629e50"
+      "path": "TemplateData/xiuxian-audio-unlock-v2.js",
+      "bytes": 5103,
+      "sha256": "22e6e9f128b622bb5923c85fe39748f44fdeb9cf91e238d84897f5c72a1835fe"
+    },
+    {
+      "path": "TemplateData/xiuxian-ios-media-pool.js",
+      "bytes": 12038,
+      "sha256": "f26a6c974404e7a22297bd33da699667270a46c71e58cb0cf11a418d31ef2695"
     },
     {
       "path": "TemplateData/xiuxian-mobile.js",
