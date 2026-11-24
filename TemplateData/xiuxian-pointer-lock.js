@@ -1,11 +1,11 @@
-/* Unity 6 WebGL ignores the Promise returned by requestPointerLock.
-   Protect only the game canvas; no global error suppression or touch input changes. */
+/* Unity 6 WebGL may defer pointer-lock requests until the next input event.
+   Explicit gameplay confirmation can request the native lock immediately. */
 (function () {
   "use strict";
   const canvas = document.getElementById("unity-canvas");
-  if (!canvas || typeof canvas.requestPointerLock !== "function") return;
-  if (canvas.__xiuxianLockGuard) return;
-  const native = canvas.requestPointerLock.bind(canvas);
+  if (!canvas || canvas.__xiuxianLockGuard) return;
+  const touch = () => !!window.XiuxianWebDevice?.touch();
+  const native = typeof canvas.requestPointerLock === "function" ? canvas.requestPointerLock.bind(canvas) : null;
   let pending = null, legacyPending = false, legacyTimer = null;
   function clearLegacy() {
     legacyPending = false;
@@ -14,9 +14,7 @@
   }
   function denied(error) {
     const name = error && error.name;
-    // Expected outcomes of concurrent requests, lost activation, or user refusal.
-    // Never claim a lock was acquired: Unity receives the real pointerlockchange event.
-    if (["InUseAttributeError", "NotAllowedError", "SecurityError", "WrongDocumentError", "NotSupportedError", "AbortError"].includes(name)) {
+    if (["InUseAttributeError","NotAllowedError","SecurityError","WrongDocumentError","NotSupportedError","AbortError"].includes(name)) {
       console.warn("[WebDesktop] pointer lock not granted:", name);
       return;
     }
@@ -24,9 +22,8 @@
   }
   document.addEventListener("pointerlockchange", clearLegacy);
   document.addEventListener("pointerlockerror", clearLegacy);
-  canvas.requestPointerLock = function (...args) {
-    if (window.XiuxianWebDevice && window.XiuxianWebDevice.touch()) return native(...args);
-    if (document.pointerLockElement === canvas) return Promise.resolve();
+  function request(...args) {
+    if (touch() || !native || document.pointerLockElement === canvas) return Promise.resolve();
     if (pending) return pending;
     if (legacyPending) return;
     try {
@@ -38,8 +35,14 @@
       legacyPending = true;
       legacyTimer = setTimeout(clearLegacy, 1000);
       return result;
-    } catch (error) {
-      return denied(error);
+    } catch (error) { return denied(error); }
+  }
+  if (native) canvas.requestPointerLock = request;
+  window.XiuxianWebPointer = {
+    request() {
+      if (touch() || !native || (document.visibilityState && document.visibilityState !== "visible")) return false;
+      request();
+      return true;
     }
   };
   canvas.__xiuxianLockGuard = true;

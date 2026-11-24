@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · desktop-fix-20261124I</span></header>
+      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · desktop-input-20261124J</span></header>
       <div id="unity-fullscreen-container">
         <div id="xx-load-error" role="alert"><p id="xx-error-text"></p><button type="button" onclick="location.reload()">重新加载</button></div>
         <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
@@ -35,6 +35,8 @@
     </div>
     <script src="TemplateData/xiuxian-mobile.js"></script>
     <script src="TemplateData/xiuxian-pointer-lock.js"></script>
+    <script src="TemplateData/xiuxian-viewport-fix.js"></script>
+    <script src="TemplateData/xiuxian-audio-unlock.js"></script>
     <script>
       let canvas = document.querySelector("#unity-canvas");
       let fullscreenContainer = document.querySelector("#unity-fullscreen-container");
@@ -65,12 +67,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/396a91cba592fbc43844d9f7756e4f8d.loader.js";
+      var loaderUrl = buildUrl + "/22ec2f7d336544250722d793a7c958fe.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/ae3b222fa51f28cd717e4ddace10d95e.data.unityweb",
-        frameworkUrl: buildUrl + "/1fe8ad5a55bd84cb9517dd0d307abae3.framework.js.unityweb",
-        codeUrl: buildUrl + "/f91b347c3d04ec332ae8a56af7791c13.wasm.unityweb",
+        dataUrl: buildUrl + "/ea43aa3ab96727cb1db463300ed8bca5.data.unityweb",
+        frameworkUrl: buildUrl + "/5dcc3ae91fbf45537869dd39b31748be.framework.js.unityweb",
+        codeUrl: buildUrl + "/14d08bac977d456501f96e914c771b11.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
 
         // If you have a custom web site structure, or want to place multiple Unity build instances on the same page,
@@ -148,6 +150,7 @@
             loadingContainer.style.display = "none";
           }
         }).then((unityInstance) => {
+                window.XiuxianWebAudio.bind(unityInstance);
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
