@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "manifestSha256": "ddf919e4ca752d3c2a16533ce7388c15d6a60601410ecb2eda9f268650c7accd",
+  "manifestSha256": "2b0af2893334a2198811ce3e43d4697f8afd5f62b2b40e5e5711f983cd0ff55c",
   "files": [
     {
       "path": ".nojekyll",
@@ -29,13 +29,13 @@
     },
     {
       "path": "build-info.json",
-      "bytes": 193,
-      "sha256": "b1449d24dd5a3dfb47376fbf661da1e3c11593bf9943c594a87def349f5e608b"
+      "bytes": 194,
+      "sha256": "b87039da974baee7d0155010294817eb0c76de854ff268873e5026f9728cdbdf"
     },
     {
       "path": "index.html",
-      "bytes": 8416,
-      "sha256": "83bc36c93e07dc51377240bc8f8983c5c27a2663b2fe8da2865791ab33f7fa5e"
+      "bytes": 8375,
+      "sha256": "8fbcd90b22d8c547e61bf88522401007b66fc0f7c9fd97f1da0110c79c0d7a93"
     },
     {
       "path": "TemplateData/favicon.ico",
@@ -158,24 +158,19 @@
       "sha256": "c56f5494640cedda273aad38d58e6ab9da625d5b3f4d875c0ff92c6192a569c2"
     },
     {
-      "path": "TemplateData/xiuxian-audio-unlock-v2.js",
-      "bytes": 5421,
-      "sha256": "6a31931c88ca2f1b10bef2565850d5b597b7a7c2df11e272c639f941a80ed6dc"
+      "path": "TemplateData/xiuxian-audio-unlock-buffer-bce4ffc70cca.js",
+      "bytes": 6903,
+      "sha256": "bce4ffc70cca3868ecc4a412e99acfbf27b14c3cd854de87e4d9cfc094ea5998"
+    },
+    {
+      "path": "TemplateData/xiuxian-ios-buffer-28a8daaa4efa.js",
+      "bytes": 9784,
+      "sha256": "28a8daaa4efacedc99655790ba2fadb4c9807029ff3b013603eb66ae1ad5d72d"
     },
     {
       "path": "TemplateData/xiuxian-ios-cue-bank.js",
       "bytes": 1181,
       "sha256": "13db30214870d3854ada48e2b930856a17577b615bd6ec0110f95c5cdf6d7e4d"
-    },
-    {
-      "path": "TemplateData/xiuxian-ios-direct-cues.js",
-      "bytes": 6674,
-      "sha256": "dce95b0ed0ba9eee0528bc24a16cb75957ec5a07dd11d430b683b56c73d9a157"
-    },
-    {
-      "path": "TemplateData/xiuxian-ios-media-pool.js",
-      "bytes": 12376,
-      "sha256": "7f90e3dd4e3791f8778caa5e2127468dc6d3c7014b1f6abab4fd9c857f0c511b"
     },
     {
       "path": "TemplateData/xiuxian-mobile.js",

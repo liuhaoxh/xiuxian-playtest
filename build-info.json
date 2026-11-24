@@ -1,7 +1,7 @@
 {
   "product": "Xiuxian Survivors",
   "channel": "web-playtest",
-  "candidate": "ios-direct-cue-20261124O2",
+  "candidate": "ios-buffer-audio-20261124P",
   "sourceBase": "0dabd45d9c79",
-  "buildUtc": "2026-11-24T08:31:06.6064071Z"
+  "buildUtc": "2026-11-24T10:03:28.6298851Z"
 }

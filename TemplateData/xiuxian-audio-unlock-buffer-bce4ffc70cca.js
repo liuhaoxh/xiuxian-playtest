@@ -28,7 +28,7 @@
   // Optional per-cue diagnostics use the actual game's RunAudioSink, not synthetic tones.
   const qa = new URLSearchParams(location.search).get("audioqa")==="1";
   let cuePicker=null;
-  if(qa && toolbar && window.XiuxianIOSMedia){
+  if(qa && toolbar && window.XiuxianWebDirectAudio){
     cuePicker=document.createElement("select");
     cuePicker.setAttribute("aria-label","Audio cue test");
     cuePicker.title="Game dispatch test (actual game audio cues)";
@@ -39,7 +39,8 @@
   }
   function update() {
     const running = [...contexts].some(c => c.state === "running");
-    button.textContent = running ? "试音" : "开启声音";
+    const d=window.XiuxianWebDirectAudio?.diagnostics();
+    button.textContent = d?.disabled ? "声音已关闭" : d && d.decoded<12 ? "音效加载中" : running ? "试音" : "开启声音";
     button.setAttribute("aria-label", running ? "播放测试音效" : "开启声音");
   }
   function track(c) {
@@ -75,25 +76,43 @@
       if (!e.isTrusted) return;
       if (ios && (e.target === document.getElementById("unity-canvas") || e.target === button)) {
         preferMediaSession = true;
-        applyMediaSession();
-        if(window.XiuxianWebDirectAudio) window.XiuxianWebDirectAudio.unlock(); else window.XiuxianIOSMedia?.unlock();
+        if(!window.XiuxianWebDirectAudio)applyMediaSession();
+        window.XiuxianWebDirectAudio?.unlock();
       }
-      unlock();
+      if(!window.XiuxianWebDirectAudio)unlock();
     }, {capture:true,passive:true});
   }
-  document.addEventListener("visibilitychange", () => { applyMediaSession(); update(); });
-  window.addEventListener("pageshow", () => { applyMediaSession(); update(); });
+  document.addEventListener("visibilitychange", () => { if(!window.XiuxianWebDirectAudio)applyMediaSession(); update(); });
+  window.addEventListener("pageshow", () => { if(!window.XiuxianWebDirectAudio)applyMediaSession(); update(); });
   button.addEventListener("click", async e => {
     if (!e.isTrusted) return;
     preferMediaSession = true;
-    applyMediaSession();
-    if(window.XiuxianWebDirectAudio) window.XiuxianWebDirectAudio.unlock(); else window.XiuxianIOSMedia?.unlock();
-    await unlock();
-    if(window.XiuxianIOSMedia) await window.XiuxianIOSMedia.ready();
+    if(!window.XiuxianWebDirectAudio)applyMediaSession();
+    window.XiuxianWebDirectAudio?.unlock();
+    if(!window.XiuxianWebDirectAudio) await unlock();
+    if(window.XiuxianWebDirectAudio && !await window.XiuxianWebDirectAudio.ready()) { update(); return; }
     if (instance && [...contexts].some(c => c.state === "running")) {
-      try { if(cuePicker) { if(window.XiuxianWebDirectAudio) instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",String(cuePicker.value)); else if(!window.XiuxianIOSMedia.testCue(Number(cuePicker.value))) console.warn("[WebAudio] cue inventory changed; standalone check unavailable"); } else instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
+      try { if(cuePicker) { instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",String(cuePicker.value)); } else instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
       catch (e) { console.warn("[WebAudio] test unavailable",e); }
     }
   });
+  if(qa && toolbar && window.XiuxianWebDirectAudio){
+    const stats=document.createElement("button");stats.type="button";stats.textContent="Audio stats";
+    stats.style.cssText=button.style.cssText;
+    stats.addEventListener("click",()=>{
+      const d=window.XiuxianWebDirectAudio.diagnostics();
+      const box=document.createElement("div");box.setAttribute("role","dialog");
+      box.style.cssText="position:fixed;inset:5%;z-index:5000;overflow:auto;padding:12px;background:#132221;color:#e0eee5;border:1px solid #90a090;font:12px monospace;white-space:pre-wrap;";
+      const close=document.createElement("button");close.textContent="关闭";close.addEventListener("click",()=>box.remove());
+      const pre=document.createElement("pre");pre.style.whiteSpace="pre-wrap";
+      pre.textContent=["route "+d.mode+" | AudioSession "+d.sessionSet+" | "+d.context,
+        "decoded "+d.decoded+"/12 | gain "+d.volume.toFixed(3)+" | output "+d.outputReady,
+        "per-cue media calls "+d.perCueMediaCalls+" | output play "+d.mediaPlayCalls,
+        "schedule "+JSON.stringify(d.scheduling),"frame "+JSON.stringify(d.frames),
+        "cue: game / test / started / ended / busy / notReady / failed",
+        ...d.rows.map(r=>r.name+": "+[r.game,r.diagnostic,r.started,r.ended,r.busy,r.notReady,r.failed].join(" / "))].join("\n");
+      box.append(close,pre);document.body.appendChild(box);
+    });toolbar.appendChild(stats);
+  }
   window.XiuxianWebAudio = { bind(value){instance=value;update();}, state(){return [...contexts].map(c=>c.state);}, session(){return {ios,supported:!!navigator.audioSession,type:navigator.audioSession?.type||null,state:navigator.audioSession?.state||null,requested:preferMediaSession};} };
 })();
