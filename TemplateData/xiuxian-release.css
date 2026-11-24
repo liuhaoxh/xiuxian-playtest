@@ -1,0 +1,26 @@
+/* Desktop release shell; the shared mobile host remains authoritative. */
+body #unity-container.xiuxian-host:not(.xiuxian-handheld) {
+  width:min(1180px,96vw,calc((100dvh - 178px)*16/9))!important;
+  padding:0; gap:8px; color:#d8e2da;
+}
+body {background:radial-gradient(ellipse at 50% 100%,#253b36 0,#142322 42%,#0e1718 80%)!important;}
+.xx-release-header,.xx-release-help {display:none;}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) .xx-release-header {
+  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #807652;padding:0 2px 9px;
+}
+.xx-title {font-size:21px;letter-spacing:.13em;font-weight:600;color:#e7e4d4;}
+.xx-version {font-size:12px;letter-spacing:.09em;color:#a2b0a4;}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) .xx-release-help {
+ display:block;text-align:center;font-size:12px;color:#a6b8ae;line-height:1.7;padding:3px;
+}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) #unity-fullscreen-container {
+ box-shadow:0 12px 36px #0006;outline:1px solid #60796b;overflow:hidden;
+}
+#unity-fullscreen-container:fullscreen {outline:none!important;}
+#unity-loading-container {background:#112020;}
+#xx-loading-status {font:13px/1.8 system-ui,sans-serif;color:#c7d4ca;text-align:center;margin-top:12px;}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) #unity-build-title{color:#b8c7bd;font-size:13px;}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) #unity-fullscreen-button{background-color:#263b36;border:1px solid #60796b;}
+#unity-container.xiuxian-host:not(.xiuxian-handheld) #unity-logo-title-footer{opacity:.65;filter:invert(1);}
+#xx-load-error{display:none;position:absolute;inset:0;z-index:20;padding:24px;background:#112020;color:#e3e9df;align-content:center;text-align:center;}
+#xx-load-error button{padding:10px 20px;border:1px solid #8b987b;background:#263b36;color:#e3e9df;font:inherit;cursor:pointer;}

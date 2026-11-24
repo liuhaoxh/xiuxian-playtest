@@ -1,7 +1,164 @@
-<!doctype html>
-<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>修仙幸存者 · 在线试玩</title>
-<style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at 50% 85%,#263b38 0,#142221 38%,#0e1718 75%);color:#dce4db;font:16px/1.85 system-ui,sans-serif}main{width:min(680px,100%);padding:56px 42px;border:1px solid #6f7966;background:#12201f;box-shadow:0 20px 80px #0005}small{letter-spacing:.22em;color:#a1b0a3}h1{font-size:clamp(32px,6vw,50px);font-weight:600;letter-spacing:.14em;margin:14px 0 10px}hr{border:0;border-top:1px solid #887e59;margin:26px 0}p{color:#b8c5bd;margin:0 0 16px}.status{color:#d0be8c;font-weight:600}.sub{font-size:13px;color:#8fa39a}footer{margin-top:32px;font-size:12px;color:#91a49a}
-</style><main><small>XIUXIAN SURVIVORS / WEB PLAYTEST</small><h1>修仙幸存者</h1><hr>
-<p class="status">试玩版本准备中</p><p>在线试玩站点已建立。游戏版本尚在发布验收阶段，当前页面暂不提供游戏加载。</p><p class="sub">正式试玩开放后，本地址保持不变。建议使用电脑 Chrome 或 Edge 浏览器。</p><footer>开发中 · 非正式发行版本</footer></main></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>修仙幸存者 · 在线试玩</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="TemplateData/xiuxian-release.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · desktop-fix-20261124I</span></header>
+      <div id="unity-fullscreen-container">
+        <div id="xx-load-error" role="alert"><p id="xx-error-text"></p><button type="button" onclick="location.reload()">重新加载</button></div>
+        <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
+        <div id="unity-loading-container">
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+            <p id="xx-loading-status" role="status" aria-live="polite">正在加载游戏资源…</p>
+          </div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-logo-title-footer"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">WebGL 试玩版</div>
+      </div>
+      <div class="xx-release-help">点击画面捕获鼠标 · WASD 移动 · 鼠标视角 · 空格跳跃 · Q 冲刺 · Esc 暂停 · 1/2/3 选择机缘 · Tab 构筑详情<br>开发中版本，建议 Chrome / Edge。结算自动存档，继续游戏恢复上次结算。<br><a href="THIRD_PARTY_NOTICES.txt" style="color:#a6b8ae">第三方许可声明</a></div>
+    </div>
+    <script src="TemplateData/xiuxian-mobile.js"></script>
+    <script src="TemplateData/xiuxian-pointer-lock.js"></script>
+    <script>
+      let canvas = document.querySelector("#unity-canvas");
+      let fullscreenContainer = document.querySelector("#unity-fullscreen-container");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.textContent = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/396a91cba592fbc43844d9f7756e4f8d.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/ae3b222fa51f28cd717e4ddace10d95e.data.unityweb",
+        frameworkUrl: buildUrl + "/1fe8ad5a55bd84cb9517dd0d307abae3.framework.js.unityweb",
+        codeUrl: buildUrl + "/f91b347c3d04ec332ae8a56af7791c13.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+
+        // If you have a custom web site structure, or want to place multiple Unity build instances on the same page,
+        // you can pass fullscreenElementID: "my-unity-fullscreen-container-id", in this configuration field to
+        // explicitly point to the element tree root that is displayed in fullscreen mode.
+        fullscreenElementID: "unity-fullscreen-container",
+
+        companyName: "DefaultCompany",
+        productName: "XiuxianSurvivors",
+        productVersion: "1.0",
+        showBanner: unityShowBanner,
+        // errorHandler: function(err, url, line) {
+        //    alert("error " + err + " occurred at line " + line);
+        //    // Return 'true' if you handled this error and don't want Unity
+        //    // to process it further, 'false' otherwise.
+        //    return true;
+        // },
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      // If you would like all file writes inside Unity Application.persistentDataPath
+      // directory to automatically persist so that the contents are remembered when
+      // the user revisits the site the next time, uncomment the following line:
+      // config.autoSyncPersistentDataPath = true;
+      // This autosyncing is currently not the default behavior to avoid regressing
+      // existing user projects that might rely on the earlier manual
+      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+      // expected to change.
+
+      if (window.XiuxianWebDevice.handheld() || window.XiuxianWebDevice.touch()) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
+        // Viewport already configured by the host.
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+
+
+      } else {
+        // Desktop style: Render the game canvas container in a window that can be maximized to fullscreen:
+        fullscreenContainer.style.width = "960px";
+        fullscreenContainer.style.height = "600px";
+      }
+
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      function showLoadError(message) {
+        document.querySelector("#xx-error-text").textContent = "加载失败：" + String(message);
+        document.querySelector("#xx-load-error").style.display = "grid";
+      }
+      script.onerror = () => showLoadError("游戏加载器无法下载");
+      script.onload = () => {
+        const loadingContainer = document.querySelector("#unity-loading-container");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#xx-loading-status").textContent = "正在加载游戏资源 · " + Math.round(progress * 100) + "%";
+          if (progress < 1) {
+            loadingContainer.style.display = "block";
+            progressBarFull.style.width = 100 * progress + "%";
+          } else {
+            loadingContainer.style.display = "none";
+          }
+        }).then((unityInstance) => {
+                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+
+              }).catch((message) => {
+                showLoadError(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
+</html>

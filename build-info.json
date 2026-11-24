@@ -1,6 +1,7 @@
 {
   "product": "Xiuxian Survivors",
   "channel": "web-playtest",
-  "status": "holding",
-  "candidate": "holding-20261124"
+  "candidate": "desktop-fix-20261124I",
+  "sourceBase": "0dabd45d9c79",
+  "buildUtc": "2026-11-24T05:01:28.3671698Z"
 }
