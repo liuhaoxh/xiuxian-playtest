@@ -59,6 +59,11 @@
     if (!firstUrl) firstUrl=url;
     if (!clips.has(url)) clips.set(url,{duration:durationHint(data),attempts:0,started:0,ended:0,rejected:0});
   }
+  function registerNamed(ctx,url,seconds) {
+    register(ctx,url);
+    if(!(seconds>0&&seconds<3600))throw new Error("Invalid cue duration");
+    clips.get(url).duration=seconds;
+  }
   function prime(slot,url) {
     if (slot.authorized || slot.owner || slot.prime || !firstUrl) return;
     slot.prime=true;
@@ -82,11 +87,11 @@
       Promise.resolve(p).then(()=>finish(true),err=>finish(false,err));
     }catch(err){finish(false,err);}
   }
-  function unlock() {
+  function unlock(preferredUrls) {
     if(!context || !firstUrl || document.visibilityState==="hidden")return;
     activated=true;
     while(slots.length<LIMIT)make();
-    const urls=[...clips.keys()]; slots.forEach((slot,i)=>prime(slot,urls[i%urls.length]));
+    const urls=preferredUrls?.length?preferredUrls:[...clips.keys()]; slots.forEach((slot,i)=>prime(slot,urls[i%urls.length]));
   }
   function borrow(ctx,url) {
     register(ctx,url);
@@ -150,6 +155,7 @@
             promise.then(()=>{
               if(!current())return;
               promise=null;slot.authorized=true;stats.started++;counts.started++;
+              source.onStarted?.();
               if(pausedRequested)el.pause();
               // Media element may promise success but stall. Keep a bounded
               // one-shot completion watchdog in addition to the ended event.
@@ -186,6 +192,7 @@
     function finish(token,natural){
       if(released||version!==token||slot.owner!==source)return;
       ++version;clearTimers();el.pause();source.isStopped=true;
+      source.completionReason=natural?"ended":"failed";
       if(natural){stats.ended++;counts.ended++;}
       const cb=onended;
       // Unity's callback synchronously disconnects and releases the voice.
@@ -223,7 +230,7 @@
     src.start(context.currentTime,0);
     return true;
   }
-  window.XiuxianIOSMedia={register,borrow,unlock,ready,testCue,duration(url){return clips.get(url)?.duration||0;},diagnostics(){return {...stats,limit:LIMIT,slots:slots.length,busy:slots.filter(s=>s.owner).length,
+  window.XiuxianIOSMedia={register,registerNamed,borrow,unlock,ready,testCue,duration(url){return clips.get(url)?.duration||0;},diagnostics(){return {...stats,limit:LIMIT,slots:slots.length,busy:slots.filter(s=>s.owner).length,
     authorized:slots.filter(s=>s.authorized).length,priming:slots.filter(s=>s.prime).length,activated,
     clips:[...clips.values()].map((c,i)=>({id:i,...c}))};}};
 })();

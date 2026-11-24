@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · ios-audio-pool-20261124N3</span></header>
+      <header class="xx-release-header"><span class="xx-title">修仙幸存者</span><span class="xx-version">开发中 · ios-direct-cue-20261124O2</span></header>
       <div id="unity-fullscreen-container">
         <div id="xx-load-error" role="alert"><p id="xx-error-text"></p><button type="button" onclick="location.reload()">重新加载</button></div>
         <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
@@ -37,6 +37,8 @@
     <script src="TemplateData/xiuxian-pointer-lock.js"></script>
     <script src="TemplateData/xiuxian-viewport-fix.js"></script>
     <script src="TemplateData/xiuxian-ios-media-pool.js"></script>
+    <script src="TemplateData/xiuxian-ios-cue-bank.js"></script>
+    <script src="TemplateData/xiuxian-ios-direct-cues.js"></script>
     <script src="TemplateData/xiuxian-audio-unlock-v2.js"></script>
     <script>
       let canvas = document.querySelector("#unity-canvas");
@@ -68,12 +70,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/45c1293afb31dd87df40330e543b2069.loader.js";
+      var loaderUrl = buildUrl + "/d8f1c19eb7e42a5c19d50a86ae25ce28.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/267d21efcb5c60385b5a3fef05c6abad.data.unityweb",
-        frameworkUrl: buildUrl + "/b9d1c144fa8961efa6b1ecb3bb81a614.framework.js.unityweb",
-        codeUrl: buildUrl + "/7e8ea5b0b4eda3cc99dde27f3528176c.wasm.unityweb",
+        dataUrl: buildUrl + "/85b52e959e680bd01ea04ae003208b71.data.unityweb",
+        frameworkUrl: buildUrl + "/87a61d22a31e1c506af2dec666a2861c.framework.js.unityweb",
+        codeUrl: buildUrl + "/d86dcf97372f82dae4cbcb66203ac590.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
 
         // If you have a custom web site structure, or want to place multiple Unity build instances on the same page,

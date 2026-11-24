@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "manifestSha256": "615965141acc2390a3bb5e0c31f31d39fae8672be8ae00090fa79aa8e4c6971d",
+  "manifestSha256": "ddf919e4ca752d3c2a16533ce7388c15d6a60601410ecb2eda9f268650c7accd",
   "files": [
     {
       "path": ".nojekyll",
@@ -8,34 +8,34 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "Build/267d21efcb5c60385b5a3fef05c6abad.data.unityweb",
-      "bytes": 45479943,
-      "sha256": "f734cf74d34a24d3309041e480946ea48890b98b1ed0bc6ccfeaeed39009c800"
+      "path": "Build/85b52e959e680bd01ea04ae003208b71.data.unityweb",
+      "bytes": 45478935,
+      "sha256": "cf309f73b214fe1b143b93661397a3f17e73090f89765c15d5332ae3d0a21757"
     },
     {
-      "path": "Build/45c1293afb31dd87df40330e543b2069.loader.js",
+      "path": "Build/87a61d22a31e1c506af2dec666a2861c.framework.js.unityweb",
+      "bytes": 92529,
+      "sha256": "87a61d22a31e1c506af2dec666a2861ca3ea0fa1b0de7ec47b8f308b713d2037"
+    },
+    {
+      "path": "Build/d86dcf97372f82dae4cbcb66203ac590.wasm.unityweb",
+      "bytes": 13634082,
+      "sha256": "01b649206132b6423bea7013bc30efe23ae4e3607e8a99150051519ea11d3441"
+    },
+    {
+      "path": "Build/d8f1c19eb7e42a5c19d50a86ae25ce28.loader.js",
       "bytes": 48540,
-      "sha256": "84f2fd02790af8eda83415c7b4b72c4d4bf6e566d0bdaf782bfd99753afa169d"
-    },
-    {
-      "path": "Build/7e8ea5b0b4eda3cc99dde27f3528176c.wasm.unityweb",
-      "bytes": 13635740,
-      "sha256": "80c4a3a814cd100f76290e565d1565cf8aa0987646fdaf47b8afb472440a6852"
-    },
-    {
-      "path": "Build/b9d1c144fa8961efa6b1ecb3bb81a614.framework.js.unityweb",
-      "bytes": 92306,
-      "sha256": "b9d1c144fa8961efa6b1ecb3bb81a61415ef7f93f5c245204ab5d985e5f1705f"
+      "sha256": "b9ba10120c726d1a9b373692ccdef2b008545285c41372c35e7363d1099ff0a9"
     },
     {
       "path": "build-info.json",
       "bytes": 193,
-      "sha256": "e11b4c479eb8b28acdd8649838693452fa3ece94e43fa806ae501e5e1490b658"
+      "sha256": "b1449d24dd5a3dfb47376fbf661da1e3c11593bf9943c594a87def349f5e608b"
     },
     {
       "path": "index.html",
-      "bytes": 8283,
-      "sha256": "6dcc9bee112957730e1c8027bf64e7a6558e5f1b8b4a5c1ff50234073e43b8c4"
+      "bytes": 8416,
+      "sha256": "83bc36c93e07dc51377240bc8f8983c5c27a2663b2fe8da2865791ab33f7fa5e"
     },
     {
       "path": "TemplateData/favicon.ico",
@@ -46,6 +46,66 @@
       "path": "TemplateData/fullscreen-button.png",
       "bytes": 175,
       "sha256": "21221581673a54b8139d408d4a3f8d2b879e86827d4b6fc53b995ff7a99ee3e9"
+    },
+    {
+      "path": "TemplateData/ios-cues/boss_warning-c95dda451364.m4a",
+      "bytes": 7695,
+      "sha256": "c95dda45136422731716b3279d65aed8a80dc047368b6f8c537be3be1b0dd2a0"
+    },
+    {
+      "path": "TemplateData/ios-cues/campfire-513408ebdc17.m4a",
+      "bytes": 5371,
+      "sha256": "513408ebdc17aa1275d92e851a9c8a889bf23d77400f6a6a4a45727b1bf083cb"
+    },
+    {
+      "path": "TemplateData/ios-cues/defeat-036511c6ece7.m4a",
+      "bytes": 7609,
+      "sha256": "036511c6ece71462c2198d959eb28f41690ba7baa735d22bcbc55d161fc0eba9"
+    },
+    {
+      "path": "TemplateData/ios-cues/gongfa-c147af24bcff.m4a",
+      "bytes": 2823,
+      "sha256": "c147af24bcffaaef6c820de776fb23460af506ddc4744099b9ffc4dac8c59953"
+    },
+    {
+      "path": "TemplateData/ios-cues/hurt-d74476f3b91e.m4a",
+      "bytes": 3043,
+      "sha256": "d74476f3b91e4a2c6366424ce1513872161be78d6f7d8b2d3de275e60aa4b38f"
+    },
+    {
+      "path": "TemplateData/ios-cues/impact-d0e38c3a0ff2.m4a",
+      "bytes": 2103,
+      "sha256": "d0e38c3a0ff2cab172d400204fde2cff49d14d4690c5ca4d7a868b119a2cdd6c"
+    },
+    {
+      "path": "TemplateData/ios-cues/layer-62654db3bdbf.m4a",
+      "bytes": 5174,
+      "sha256": "62654db3bdbf860b0424a1314df0fe9c2ecdf99dc8513f77238dc21ca84b678a"
+    },
+    {
+      "path": "TemplateData/ios-cues/offer_open-62c35db2585c.m4a",
+      "bytes": 3417,
+      "sha256": "62c35db2585c7965da3a4825b0b37d66a2168996e76314e9adcce23d9fc98c58"
+    },
+    {
+      "path": "TemplateData/ios-cues/offer_pick-2e53a1321fc0.m4a",
+      "bytes": 3009,
+      "sha256": "2e53a1321fc08aa50d8b89e83f24c742401d035576ae8fa0bb3b20ee0e96c24d"
+    },
+    {
+      "path": "TemplateData/ios-cues/pickup-0ebb376141b1.m4a",
+      "bytes": 2547,
+      "sha256": "0ebb376141b1dbb64c6f2b178fea60236c97f52af0ed90c71f7650cbd272b64f"
+    },
+    {
+      "path": "TemplateData/ios-cues/victory-908c0339a5dc.m4a",
+      "bytes": 8957,
+      "sha256": "908c0339a5dc43d388a765e59023fa79daea38f41ab8edd3544898f2050cafb4"
+    },
+    {
+      "path": "TemplateData/ios-cues/weapon-e44ae69a9e39.m4a",
+      "bytes": 2096,
+      "sha256": "e44ae69a9e398a2952f041157d7fcb690fc58a12d74037f0360af85a61ecf2b2"
     },
     {
       "path": "TemplateData/MemoryProfiler.png",
@@ -99,13 +159,23 @@
     },
     {
       "path": "TemplateData/xiuxian-audio-unlock-v2.js",
-      "bytes": 5103,
-      "sha256": "22e6e9f128b622bb5923c85fe39748f44fdeb9cf91e238d84897f5c72a1835fe"
+      "bytes": 5421,
+      "sha256": "6a31931c88ca2f1b10bef2565850d5b597b7a7c2df11e272c639f941a80ed6dc"
+    },
+    {
+      "path": "TemplateData/xiuxian-ios-cue-bank.js",
+      "bytes": 1181,
+      "sha256": "13db30214870d3854ada48e2b930856a17577b615bd6ec0110f95c5cdf6d7e4d"
+    },
+    {
+      "path": "TemplateData/xiuxian-ios-direct-cues.js",
+      "bytes": 6674,
+      "sha256": "dce95b0ed0ba9eee0528bc24a16cb75957ec5a07dd11d430b683b56c73d9a157"
     },
     {
       "path": "TemplateData/xiuxian-ios-media-pool.js",
-      "bytes": 12038,
-      "sha256": "f26a6c974404e7a22297bd33da699667270a46c71e58cb0cf11a418d31ef2695"
+      "bytes": 12376,
+      "sha256": "7f90e3dd4e3791f8778caa5e2127468dc6d3c7014b1f6abab4fd9c857f0c511b"
     },
     {
       "path": "TemplateData/xiuxian-mobile.js",

@@ -31,7 +31,7 @@
   if(qa && toolbar && window.XiuxianIOSMedia){
     cuePicker=document.createElement("select");
     cuePicker.setAttribute("aria-label","Audio cue test");
-    cuePicker.title="Standalone audio transport test (actual game assets)";
+    cuePicker.title="Game dispatch test (actual game audio cues)";
     const names=["weapon / 飞剑","gongfa / 功法发射","impact / 命中","hurt / 受伤","pickup / 拾取","layer / 境界","offer_open / 机缘打开","offer_pick / 机缘确认","campfire / 营火","boss_warning / 首领","victory / 胜利","defeat / 失败"];
     names.forEach((name,id)=>{const o=document.createElement("option");o.value=String(id);o.textContent=name;cuePicker.appendChild(o);});
     cuePicker.value="1";
@@ -44,6 +44,7 @@
   }
   function track(c) {
     contexts.add(c);
+    window.XiuxianWebDirectAudio?.attachContext(c);
     c.addEventListener("statechange", () => {
       if (c.state === "closed") contexts.delete(c);
       update();
@@ -75,7 +76,7 @@
       if (ios && (e.target === document.getElementById("unity-canvas") || e.target === button)) {
         preferMediaSession = true;
         applyMediaSession();
-        window.XiuxianIOSMedia?.unlock();
+        if(window.XiuxianWebDirectAudio) window.XiuxianWebDirectAudio.unlock(); else window.XiuxianIOSMedia?.unlock();
       }
       unlock();
     }, {capture:true,passive:true});
@@ -86,11 +87,11 @@
     if (!e.isTrusted) return;
     preferMediaSession = true;
     applyMediaSession();
-    window.XiuxianIOSMedia?.unlock();
+    if(window.XiuxianWebDirectAudio) window.XiuxianWebDirectAudio.unlock(); else window.XiuxianIOSMedia?.unlock();
     await unlock();
     if(window.XiuxianIOSMedia) await window.XiuxianIOSMedia.ready();
     if (instance && [...contexts].some(c => c.state === "running")) {
-      try { if(cuePicker) { if(!window.XiuxianIOSMedia.testCue(Number(cuePicker.value))) console.warn("[WebAudio] cue inventory changed; standalone check unavailable"); } else instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
+      try { if(cuePicker) { if(window.XiuxianWebDirectAudio) instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",String(cuePicker.value)); else if(!window.XiuxianIOSMedia.testCue(Number(cuePicker.value))) console.warn("[WebAudio] cue inventory changed; standalone check unavailable"); } else instance.SendMessage("Xiuxian_Audio","PlayWebSoundCheck",""); }
       catch (e) { console.warn("[WebAudio] test unavailable",e); }
     }
   });
