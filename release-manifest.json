@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "manifestSha256": "5ec6412f84e6e779174b7a1fe9cb237a8d28894947e0b5d4cea2f9847f8c5a2c",
+  "manifestSha256": "3b0e0bbc0f2f4bd4730080413eb9e944635142afecf6f98573e3b47775864cd8",
   "files": [
     {
       "path": ".nojekyll",
@@ -8,34 +8,34 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "Build/085227e49e56284d96b7e1bb196a0f6c.data.unityweb",
-      "bytes": 45479971,
-      "sha256": "0b6612438056899862dd4161766aeaa120beefd99b9f7d0f1bd7f3589ef49fe9"
+      "path": "Build/267d21efcb5c60385b5a3fef05c6abad.data.unityweb",
+      "bytes": 45479943,
+      "sha256": "f734cf74d34a24d3309041e480946ea48890b98b1ed0bc6ccfeaeed39009c800"
     },
     {
-      "path": "Build/13bd48e4d80a3cc64592c130cdbf6f9e.framework.js.unityweb",
-      "bytes": 92104,
-      "sha256": "13bd48e4d80a3cc64592c130cdbf6f9ec86ce14b8af3b11c313365e0e4d9b79f"
-    },
-    {
-      "path": "Build/14d08bac977d456501f96e914c771b11.wasm.unityweb",
-      "bytes": 13638932,
-      "sha256": "e517897c2561006e843501e4a90e478c3638acb163239a4988254a49116732d0"
-    },
-    {
-      "path": "Build/22ec2f7d336544250722d793a7c958fe.loader.js",
+      "path": "Build/45c1293afb31dd87df40330e543b2069.loader.js",
       "bytes": 48540,
-      "sha256": "c3aa2936ded63e6f96cf23b553c8b8143f2b90f57cef4557687b07756edfa7ba"
+      "sha256": "84f2fd02790af8eda83415c7b4b72c4d4bf6e566d0bdaf782bfd99753afa169d"
+    },
+    {
+      "path": "Build/7e8ea5b0b4eda3cc99dde27f3528176c.wasm.unityweb",
+      "bytes": 13635740,
+      "sha256": "80c4a3a814cd100f76290e565d1565cf8aa0987646fdaf47b8afb472440a6852"
+    },
+    {
+      "path": "Build/d32555b092edf8daad233a908a027d6f.framework.js.unityweb",
+      "bytes": 92213,
+      "sha256": "d32555b092edf8daad233a908a027d6fe063774604ae900971256c4c4c4d87dc"
     },
     {
       "path": "build-info.json",
-      "bytes": 194,
-      "sha256": "cc5fd8512fb8df81f508b0cdd8551bb988c3adc075858c031dcf3f408662f071"
+      "bytes": 190,
+      "sha256": "d983fb9dce70f84b20df00a61f6eff191d19a2a38c9cab2986a4ecac1de10f0f"
     },
     {
       "path": "index.html",
-      "bytes": 8214,
-      "sha256": "c9db7ee48a36f681f447f54b111e76dc31d72ff501c39ea7501f43ce025364ef"
+      "bytes": 8210,
+      "sha256": "529e369aba24a8a74016b35effd3493cbc4e046ad92f1d0123a08cbe2c5e27f4"
     },
     {
       "path": "TemplateData/favicon.ico",
@@ -109,8 +109,8 @@
     },
     {
       "path": "TemplateData/xiuxian-pointer-lock.js",
-      "bytes": 1981,
-      "sha256": "ec647d70133ccf050593b71779fd915b37d3fa6bcf8a3816e0c0fa06e2529fb3"
+      "bytes": 5282,
+      "sha256": "ad2a301c601cedad62ba9736d3678da34db0bdf334ceac3f63836df67e1cba55"
     },
     {
       "path": "TemplateData/xiuxian-release.css",
